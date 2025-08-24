@@ -23,18 +23,7 @@ public class Main {
 
             switch (choice) {
                 case 1: {
-                    System.out.print("Book ID: ");
-                    Scanner sc1 = new Scanner(System.in);
-                    int bookId = sc1.nextInt();
-                    System.out.print("Book title: ");
-                    sc1 = new Scanner(System.in);
-                    String title = sc1.nextLine();
-                    System.out.print("Author: ");
-                    sc1 = new Scanner(System.in);
-                    String author = sc1.nextLine();
-                    Book book = new Book(bookId, title, author);
-                    Management.addBook(book);
-                    System.out.println("Book added successfully.\n");
+                    Management.addBook();
                     break;
                 }
                 case 2: {
@@ -51,14 +40,7 @@ public class Main {
                     break;
                 }
                 case 4: {
-                    System.out.print("Member name: ");
-                    Scanner sc1 = new Scanner(System.in);
-                    String name = sc1.nextLine(); 
-                    System.out.print("Member id: ");
-                    sc1 = new Scanner(System.in);
-                    int id = sc1.nextInt(); 
-                    Management.addMember(name, id);
-                    System.out.println("Member added successfully.\n");
+                    Management.addMember();
                     break;
                 }
                 case 5: {

@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Scanner;
 import java.util.Vector;
 
 public class Management {
@@ -8,9 +9,26 @@ public class Management {
     static Vector<Integer> isAvailableMember = new Vector<>();
     static ArrayList<Borrow> whoBorrows = new ArrayList<>();
 
-    static void addBook(Book b) {
+    static void addBook() {
+        System.out.print("Book ID: ");
+        Scanner sc1 = new Scanner(System.in);
+        int bookId = sc1.nextInt();
+        for (int i : isAvailableBook) {
+            if (i == bookId) {
+                System.out.println("\nThe book is already added.\n");
+                return;
+            }
+        }
+        System.out.print("Book title: ");
+        sc1 = new Scanner(System.in);
+        String title = sc1.nextLine();
+        System.out.print("Author: ");
+        sc1 = new Scanner(System.in);
+        String author = sc1.nextLine();
+        Book b = new Book(bookId, title, author);
         books.add(b);
         isAvailableBook.add(b.bookId);
+        System.out.println("Book added successfully.\n");
     }
 
     static boolean showBooks() {
@@ -37,8 +55,27 @@ public class Management {
             System.out.println("Not Available...\n");
     }
 
-    static void addMember(String s, int id) {
-        Member m = new Member(s, id);
+    static void addMember() {
+        System.out.print("Member id: ");
+        
+        Scanner sc2 = new Scanner(System.in);
+        int id = sc2.nextInt();
+
+        for (int i : isAvailableMember) {
+            if (i == id) {
+                System.out.println("\nThe member is already exist.\n");
+                return;
+            }
+        }
+
+        System.out.print("Member name: ");
+        Scanner sc1 = new Scanner(System.in);
+        String name = sc1.nextLine();
+        
+        
+
+        System.out.println("Member added successfully.\n");
+        Member m = new Member(name, id);
         member.add(m);
         isAvailableMember.add(m.id);
     }
@@ -64,10 +101,8 @@ public class Management {
             }
         }
         if (membership) {
-            for(int i=0;i<isAvailableBook.size();i++)
-            {
-                if(bookId == isAvailableBook.get(i))
-                {
+            for (int i = 0; i < isAvailableBook.size(); i++) {
+                if (bookId == isAvailableBook.get(i)) {
                     isAvailableBook.remove(i);
                     canBorrow = true;
                     break;
@@ -84,8 +119,8 @@ public class Management {
             System.out.println("\nSorry this book is not available right now.\n");
         }
     }
-    static void returnBook(int mid)
-    {
+
+    static void returnBook(int mid) {
         boolean membership = false;
         for (int available : isAvailableMember) {
             if (available == mid) {
@@ -93,28 +128,24 @@ public class Management {
                 break;
             }
         }
-        if(!membership)
-        {
+        if (!membership) {
             System.out.println("\nTake membership first.\n");
             return;
         }
         boolean returned = false;
-        for(Borrow id : whoBorrows)
-        {
-            if(mid == id.stdID)
-            {
+        for (Borrow id : whoBorrows) {
+            if (mid == id.stdID) {
                 isAvailableBook.add(id.bookID);
                 System.out.println("\nReturned book successfully.");
                 returned = true;
             }
         }
-        if(!returned)
-        {
+        if (!returned) {
             System.out.println("\nYou have no book borrowed.\n");
         }
     }
-    static void viewBorrowedBook(int mid)
-    {
+
+    static void viewBorrowedBook(int mid) {
         boolean membership = false;
         for (int available : isAvailableMember) {
             if (available == mid) {
@@ -122,29 +153,22 @@ public class Management {
                 break;
             }
         }
-        if(!membership)
-        {
+        if (!membership) {
             System.out.println("\nTake membership first.\n");
             return;
         }
         boolean returned = false;
-        for(Borrow id : whoBorrows)
-        {
-            if(mid == id.stdID)
-            {
-                System.out.println("\n"+id.bookID+"\n");
-                for(Book b : books)
-                {
-                    if(id.bookID == b.bookId)
-                    {
+        for (Borrow id : whoBorrows) {
+            if (mid == id.stdID) {
+                for (Book b : books) {
+                    if (id.bookID == b.bookId) {
                         System.out.println(b.title);
                     }
                 }
                 returned = true;
             }
         }
-        if(!returned)
-        {
+        if (!returned) {
             System.out.println("\nYou have no book borrowed.\n");
         }
     }
