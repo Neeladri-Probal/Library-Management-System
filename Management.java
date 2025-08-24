@@ -113,4 +113,39 @@ public class Management {
             System.out.println("\nYou have no book borrowed.\n");
         }
     }
+    static void viewBorrowedBook(int mid)
+    {
+        boolean membership = false;
+        for (int available : isAvailableMember) {
+            if (available == mid) {
+                membership = true;
+                break;
+            }
+        }
+        if(!membership)
+        {
+            System.out.println("\nTake membership first.\n");
+            return;
+        }
+        boolean returned = false;
+        for(Borrow id : whoBorrows)
+        {
+            if(mid == id.stdID)
+            {
+                System.out.println("\n"+id.bookID+"\n");
+                for(Book b : books)
+                {
+                    if(id.bookID == b.bookId)
+                    {
+                        System.out.println(b.title);
+                    }
+                }
+                returned = true;
+            }
+        }
+        if(!returned)
+        {
+            System.out.println("\nYou have no book borrowed.\n");
+        }
+    }
 }

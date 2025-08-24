@@ -81,6 +81,13 @@ public class Main {
                     Management.returnBook(mid);
                     break;
                 }
+                case 8: {
+                    System.out.print("Enter Member Id: ");
+                    Scanner sc1 = new Scanner(System.in);
+                    int mid = sc1.nextInt();
+                    Management.viewBorrowedBook(mid);
+                    break;
+                }
                 case 9: {
                     System.out.println("Thanks for visiting...");
                     return;
