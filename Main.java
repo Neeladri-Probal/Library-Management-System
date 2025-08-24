@@ -34,6 +34,16 @@ public class Main{
                     sc1 = new Scanner(System.in);
                     String author = sc1.nextLine();
                     Book book = new Book(bookId,title,author);
+                    Management.addBook(book);
+                    System.out.println("Book added successfully.\n");
+                    break;
+                }
+                case 2:
+                {
+                    if(!Management.showBooks())
+                    {
+                        System.out.println("No book available.");
+                    }
                     break;
                 }
                 case 9:
