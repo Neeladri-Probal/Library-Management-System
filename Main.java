@@ -39,7 +39,7 @@ public class Main {
                 }
                 case 2: {
                     if (!Management.showBooks()) {
-                        System.out.println("No book available.");
+                        System.out.println("No book available.\n");
                     }
                     break;
                 }
@@ -58,11 +58,21 @@ public class Main {
                     sc1 = new Scanner(System.in);
                     int id = sc1.nextInt(); 
                     Management.addMember(name, id);
-                    System.out.println("Member added successfully.");
+                    System.out.println("Member added successfully.\n");
                     break;
                 }
                 case 5: {
                     Management.viewMember();
+                    break;
+                }
+                case 6: {
+                    System.out.print("Enter Book Id: ");
+                    Scanner sc1 = new Scanner(System.in);
+                    int bid = sc1.nextInt();
+                    System.out.print("Enter Member Id: ");
+                    int mid = sc1.nextInt();
+                    Management.borrowbook(bid,mid);
+                    break;
                 }
                 case 9: {
                     System.out.println("Thanks for visiting...");
