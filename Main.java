@@ -50,6 +50,20 @@ public class Main {
                     Management.searchbook(s);
                     break;
                 }
+                case 4: {
+                    System.out.print("Member name: ");
+                    Scanner sc1 = new Scanner(System.in);
+                    String name = sc1.nextLine(); 
+                    System.out.print("Member id: ");
+                    sc1 = new Scanner(System.in);
+                    int id = sc1.nextInt(); 
+                    Management.addMember(name, id);
+                    System.out.println("Member added successfully.");
+                    break;
+                }
+                case 5: {
+                    Management.viewMember();
+                }
                 case 9: {
                     System.out.println("Thanks for visiting...");
                     return;
