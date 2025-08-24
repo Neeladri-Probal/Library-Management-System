@@ -57,16 +57,19 @@ public class Management {
     static void borrowbook(int bookId, int memberId) {
         boolean canBorrow = false;
         boolean membership = false;
-        for (int available : isAvailableBook) {
-            if (available == bookId) {
-                canBorrow = true;
+        for (int available : isAvailableMember) {
+            if (available == memberId) {
+                membership = true;
                 break;
             }
         }
-        if (canBorrow) {
-            for (int available : isAvailableMember) {
-                if (available == memberId) {
-                    membership = true;
+        if (membership) {
+            for(int i=0;i<isAvailableBook.size();i++)
+            {
+                if(bookId == isAvailableBook.get(i))
+                {
+                    isAvailableBook.remove(i);
+                    canBorrow = true;
                     break;
                 }
             }
@@ -75,14 +78,39 @@ public class Management {
             Borrow whoBorrow = new Borrow(memberId, bookId);
             whoBorrows.add(whoBorrow);
             System.out.println("\nSuccessfully borrowed book.\n");
-        }
-        else if(!membership)
-        {
+        } else if (!membership) {
             System.out.println("\nPlease take membership first.\n");
-        }
-        else if(!canBorrow)
-        {
+        } else if (!canBorrow) {
             System.out.println("\nSorry this book is not available right now.\n");
+        }
+    }
+    static void returnBook(int mid)
+    {
+        boolean membership = false;
+        for (int available : isAvailableMember) {
+            if (available == mid) {
+                membership = true;
+                break;
+            }
+        }
+        if(!membership)
+        {
+            System.out.println("\nTake membership first.\n");
+            return;
+        }
+        boolean returned = false;
+        for(Borrow id : whoBorrows)
+        {
+            if(mid == id.stdID)
+            {
+                isAvailableBook.add(id.bookID);
+                System.out.println("\nReturned book successfully.");
+                returned = true;
+            }
+        }
+        if(!returned)
+        {
+            System.out.println("\nYou have no book borrowed.\n");
         }
     }
 }
