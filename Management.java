@@ -79,6 +79,28 @@ public class Management {
         books.add(d);
         isAvailableBook.add(d.bookId);
     }
+    //some default member
+    static{
+        Member b = new Member("Alice", 201);
+        member.add(b);
+        isAvailableMember.add(b.id);
+
+        b = new Member("Bob", 202);
+        member.add(b);
+        isAvailableMember.add(b.id);
+
+        b = new Member("Charlie", 203);
+        member.add(b);
+        isAvailableMember.add(b.id);
+
+        b = new Member("Diana", 204);
+        member.add(b);
+        isAvailableMember.add(b.id);
+
+        b = new Member("Emily", 205);
+        member.add(b);
+        isAvailableMember.add(b.id);
+    }
 
     static void addBook() {
         System.out.print("Book ID: ");
@@ -110,7 +132,8 @@ public class Management {
             return false;
         else {
             for (Book book : books) {
-                System.out.println(book.title);
+                System.out.print(book.title);
+                System.out.println(" - "+book.author);
             }
             System.out.println();
         }

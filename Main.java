@@ -54,6 +54,11 @@ public class Main {
                     }
                     else if (ch == 3)
                     {
+                        System.out.println("\n1.Novel");
+                        System.out.println("2.Science Fiction");
+                        System.out.println("3.Detective");
+                        System.out.println("4.Essay");
+                        System.out.println("5.Fantasy");
                         System.out.print("\nEnter Genre: ");
                         Scanner scn1 = new Scanner(System.in);
                         String genre = scn1.nextLine();
@@ -84,7 +89,7 @@ public class Main {
                     int bid = sc1.nextInt();
                     System.out.print("Enter Member Id: ");
                     int mid = sc1.nextInt();
-                    Management.borrowbook(bid, mid);
+                    Management.borrowbook(bid, mid);5
                     break;
                 }
                 case 7: {
