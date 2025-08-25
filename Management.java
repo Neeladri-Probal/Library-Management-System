@@ -9,6 +9,77 @@ public class Management {
     static Vector<Integer> isAvailableMember = new Vector<>();
     static ArrayList<Borrow> whoBorrows = new ArrayList<>();
 
+    // some default books
+    static {
+        Book d = new Book(101, "Opekha", "Humayun Ahmed", "Novel");
+        books.add(d);
+        isAvailableBook.add(d.bookId);
+
+        d = new Book(102, "Deyal", "Humayun Ahmed", "Novel");
+        books.add(d);
+        isAvailableBook.add(d.bookId);
+
+        d = new Book(103, "Science Fiction Shomogro", "Jafar Iqbal", "Science Fiction");
+        books.add(d);
+        isAvailableBook.add(d.bookId);
+
+        d = new Book(104, "Istition", "Jafar Iqbal", "Novel");
+        books.add(d);
+        isAvailableBook.add(d.bookId);
+
+        d = new Book(105, "Hemloker Nimontron", "Shomoresh Mojumder", "Essay");
+        books.add(d);
+        isAvailableBook.add(d.bookId);
+
+        d = new Book(106, "Byomkesh Shomogro", "Sharadindu Bandyopadhyay", "Detective Fiction");
+        books.add(d);
+        isAvailableBook.add(d.bookId);
+
+        d = new Book(107, "Sherlock Holmes", "Arthur Conan Doyle", "Detective Fiction");
+        books.add(d);
+        isAvailableBook.add(d.bookId);
+
+        d = new Book(108, "Lord of the Rings", "J. R. R. Tolkien", "Fantasy");
+        books.add(d);
+        isAvailableBook.add(d.bookId);
+
+        d = new Book(109, "Harry Potter and the Philosopher's Stone", "J. K. Rowling", "Fantasy");
+        books.add(d);
+        isAvailableBook.add(d.bookId);
+
+        d = new Book(110, "Chander Pahar", "Bibhutibhushan Bandopadhyay", "Fantasy");
+        books.add(d);
+        isAvailableBook.add(d.bookId);
+
+        d = new Book(111, "Poth o Patheo", "Kazi Nazrul Islam", "Essay");
+        books.add(d);
+        isAvailableBook.add(d.bookId);
+
+        d = new Book(112, "A Room of One’s Own", "Virginia Woolf", "Essay");
+        books.add(d);
+        isAvailableBook.add(d.bookId);
+
+        d = new Book(113, "Shonkhonil Karagar", "Humayun Ahmed", "Novel");
+        books.add(d);
+        isAvailableBook.add(d.bookId);
+
+        d = new Book(114, "Parineeta", "Sarat Chandra Chattopadhyay", "Novel");
+        books.add(d);
+        isAvailableBook.add(d.bookId);
+
+        d = new Book(115, "Pride and Prejudice", "Jane Austen", "Novel");
+        books.add(d);
+        isAvailableBook.add(d.bookId);
+
+        d = new Book(116, "Robo Shomogro", "Satyajit Ray", "Science Fiction");
+        books.add(d);
+        isAvailableBook.add(d.bookId);
+
+        d = new Book(117, "I, Robot", "Isaac Asimov", "Science Fiction");
+        books.add(d);
+        isAvailableBook.add(d.bookId);
+    }
+
     static void addBook() {
         System.out.print("Book ID: ");
         Scanner sc1 = new Scanner(System.in);
@@ -33,6 +104,7 @@ public class Management {
         isAvailableBook.add(b.bookId);
         System.out.println("Book added successfully.\n");
     }
+
     static boolean showBooks() {
         if (books.isEmpty())
             return false;
@@ -44,21 +116,22 @@ public class Management {
         }
         return true;
     }
-    //by title
+
+    // by title
     static void searchbookbytitle(String s) {
         StringBuilder lower = new StringBuilder(s);
         for (int i = 0; i < lower.length(); i++) {
             lower.setCharAt(i, Character.toLowerCase(lower.charAt(i)));
         }
-        lower.setCharAt(0, Character.toUpperCase(lower.charAt(0)));
         boolean flag = false;
         for (Book book : books) {
-            if (book.title.equals(lower.toString())) {
+            String Btitle = book.title.toLowerCase();
+            if (Btitle.equals(lower.toString())) {
                 System.out.println("\nAvailable...");
-                System.out.println("Book Title: "+book.title);
-                System.out.println("Book Id: "+book.bookId);
-                System.out.println("Author: "+book.author);
-                System.out.println("Genre: "+book.genre);
+                System.out.println("Book Title: " + book.title);
+                System.out.println("Book Id: " + book.bookId);
+                System.out.println("Author: " + book.author);
+                System.out.println("Genre: " + book.genre);
                 System.out.println();
                 flag = true;
             }
@@ -66,7 +139,8 @@ public class Management {
         if (!flag)
             System.out.println("Not Available...\n");
     }
-    //by author 
+
+    // by author
     static void searchbookbyauthor(String s) {
         StringBuilder lower = new StringBuilder(s);
         for (int i = 0; i < lower.length(); i++) {
@@ -76,10 +150,10 @@ public class Management {
         for (Book book : books) {
             String author = book.author.toLowerCase();
             if (author.equals(lower.toString())) {
-                System.out.println("Book Title: "+book.title);
-                System.out.println("Book Id: "+book.bookId);
-                System.out.println("Author: "+book.author);
-                System.out.println("Genre: "+book.genre);
+                System.out.println("Book Title: " + book.title);
+                System.out.println("Book Id: " + book.bookId);
+                System.out.println("Author: " + book.author);
+                System.out.println("Genre: " + book.genre);
                 System.out.println();
                 flag = true;
             }
@@ -87,8 +161,9 @@ public class Management {
         if (!flag)
             System.out.println("No book Available...\n");
     }
-    //by genre
-     static void searchbookbygenre(String s) {
+
+    // by genre
+    static void searchbookbygenre(String s) {
         StringBuilder lower = new StringBuilder(s);
         for (int i = 0; i < lower.length(); i++) {
             lower.setCharAt(i, Character.toLowerCase(lower.charAt(i)));
@@ -97,10 +172,10 @@ public class Management {
         for (Book book : books) {
             String genre = book.genre.toLowerCase();
             if (genre.equals(lower.toString())) {
-                System.out.println("Book Title: "+book.title);
-                System.out.println("Book Id: "+book.bookId);
-                System.out.println("Author: "+book.author);
-                System.out.println("Genre: "+book.genre);
+                System.out.println("Book Title: " + book.title);
+                System.out.println("Book Id: " + book.bookId);
+                System.out.println("Author: " + book.author);
+                System.out.println("Genre: " + book.genre);
                 System.out.println();
                 flag = true;
             }
@@ -108,15 +183,16 @@ public class Management {
         if (!flag)
             System.out.println("No book Available...\n");
     }
+
     // by id
     static void searchbookbyid(int s) {
         boolean flag = false;
         for (Book book : books) {
             if (book.bookId == s) {
-                System.out.println("Book Title: "+book.title);
-                System.out.println("Book Id: "+book.bookId);
-                System.out.println("Author: "+book.author);
-                System.out.println("Genre: "+book.genre);
+                System.out.println("Book Title: " + book.title);
+                System.out.println("Book Id: " + book.bookId);
+                System.out.println("Author: " + book.author);
+                System.out.println("Genre: " + book.genre);
                 System.out.println();
                 flag = true;
             }
@@ -124,6 +200,7 @@ public class Management {
         if (!flag)
             System.out.println("Book is not available...\n");
     }
+
     static void addMember() {
         System.out.print("Member id: ");
 
