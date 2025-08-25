@@ -25,7 +25,10 @@ public class Management {
         System.out.print("Author: ");
         sc1 = new Scanner(System.in);
         String author = sc1.nextLine();
-        Book b = new Book(bookId, title, author);
+        System.out.print("Genre: ");
+        sc1 = new Scanner(System.in);
+        String genre = sc1.nextLine();
+        Book b = new Book(bookId, title, author, genre);
         books.add(b);
         isAvailableBook.add(b.bookId);
         System.out.println("Book added successfully.\n");
@@ -57,7 +60,7 @@ public class Management {
 
     static void addMember() {
         System.out.print("Member id: ");
-        
+
         Scanner sc2 = new Scanner(System.in);
         int id = sc2.nextInt();
 
@@ -71,8 +74,6 @@ public class Management {
         System.out.print("Member name: ");
         Scanner sc1 = new Scanner(System.in);
         String name = sc1.nextLine();
-        
-        
 
         System.out.println("Member added successfully.\n");
         Member m = new Member(name, id);

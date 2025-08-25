@@ -53,7 +53,7 @@ public class Main {
                     int bid = sc1.nextInt();
                     System.out.print("Enter Member Id: ");
                     int mid = sc1.nextInt();
-                    Management.borrowbook(bid,mid);
+                    Management.borrowbook(bid, mid);
                     break;
                 }
                 case 7: {
