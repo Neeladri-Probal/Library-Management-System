@@ -33,7 +33,6 @@ public class Management {
         isAvailableBook.add(b.bookId);
         System.out.println("Book added successfully.\n");
     }
-
     static boolean showBooks() {
         if (books.isEmpty())
             return false;
@@ -47,9 +46,14 @@ public class Management {
     }
 
     static void searchbook(String s) {
+        StringBuilder lower = new StringBuilder(s);
+        for (int i = 0; i < lower.length(); i++) {
+            lower.setCharAt(i, Character.toLowerCase(lower.charAt(i)));
+        }
+        lower.setCharAt(0, Character.toUpperCase(lower.charAt(0)));
         boolean flag = false;
         for (Book book : books) {
-            if (book.title.equals(s)) {
+            if (book.title.equals(lower.toString())) {
                 System.out.println("Available...\n");
                 flag = true;
             }
