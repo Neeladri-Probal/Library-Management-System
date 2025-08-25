@@ -32,10 +32,42 @@ public class Main {
                     break;
                 }
                 case 3: {
-                    System.out.print("Enter Book name: ");
-                    Scanner sc1 = new Scanner(System.in);
-                    String s = sc1.nextLine();
-                    Management.searchbook(s);
+                    System.out.println("\n1.Search by Title");
+                    System.out.println("2.Search by Author");
+                    System.out.println("3.Search by Genre");
+                    System.out.print("4.Search by BookId\n\nChoose Option: ");
+
+                    Scanner scn = new Scanner(System.in);
+                    int ch = scn.nextInt();
+
+                    if (ch == 1) {
+                        System.out.print("\nEnter Title: ");
+                        Scanner sc1 = new Scanner(System.in);
+                        String s = sc1.nextLine();
+                        Management.searchbookbytitle(s);
+                    }
+                    else if (ch == 2) {
+                        System.out.print("\nEnter Author's Name: ");
+                        Scanner sc1 = new Scanner(System.in);
+                        String s = sc1.nextLine();
+                        Management.searchbookbyauthor(s);
+                    }
+                    else if (ch == 3)
+                    {
+                        System.out.print("\nEnter Genre: ");
+                        Scanner scn1 = new Scanner(System.in);
+                        String genre = scn1.nextLine();
+                        System.out.println();
+                        Management.searchbookbygenre(genre);
+                    }
+                    else if (ch == 4)
+                    {
+                        System.out.print("\nEnter BookId: ");
+                        Scanner scn1 = new Scanner(System.in);
+                        int id = scn1.nextInt();
+                        System.out.println();
+                        Management.searchbookbyid(id);
+                    }
                     break;
                 }
                 case 4: {
