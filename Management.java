@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Vector;
+import java.time.LocalDate;
 
 public class Management {
     static ArrayList<Book> books = new ArrayList<>();
@@ -279,7 +280,10 @@ public class Management {
         if (canBorrow && membership) {
             Borrow whoBorrow = new Borrow(memberId, bookId);
             whoBorrows.add(whoBorrow);
-            System.out.println("\nSuccessfully borrowed book.\n");
+            System.out.println("\nSuccessfully borrowed book.");
+            LocalDate today = LocalDate.now();
+            LocalDate returndate = today.plusDays(7);
+            System.out.println("Return Date: "+returndate+"\n");
         } else if (!membership) {
             System.out.println("\nPlease take membership first.\n");
         } else if (!canBorrow) {
