@@ -359,6 +359,7 @@ public class Management {
                 int ch = scann.nextInt();
                 if (ch == 1) {
                     books.remove(book);
+                    isAvailableBook.remove(Integer.valueOf(book.bookId));
                     System.out.println("\nSuccessfully removed the book.\n");
                     break;
                 } else if (ch == 2) {
@@ -367,7 +368,33 @@ public class Management {
             }
         }
         if (!found) {
-            System.out.println("The book is not available.");
+            System.out.println("\nThe book is not available.\n");
+        }
+    }
+    static void deleteMem(int memid) {
+
+        boolean found = false;
+
+        for (Member m : member) {
+            if (m.id == memid) {
+                found = true;
+                System.out.println("\nAre you sure to remove the member "+m.name+"?");
+                System.out.println("1.Yes\n2.No\n");
+                System.out.print("Enter your choice : ");
+                Scanner scann = new Scanner(System.in);
+                int ch = scann.nextInt();
+                if (ch == 1) {
+                    member.remove(m);
+                    System.out.println("\nSuccessfully removed the member.\n");
+                    isAvailableMember.remove(Integer.valueOf(m.id));
+                    break;
+                } else if (ch == 2) {
+                    System.out.println("\nCanceled removing member.\n");
+                }
+            }
+        }
+        if (!found) {
+            System.out.println("\nThe member doesn't exist.\n");
         }
     }
 }
