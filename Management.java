@@ -132,8 +132,9 @@ public class Management {
         if (books.isEmpty())
             return false;
         else {
+            System.out.println("\nAvailabe Books\n");
             for (Book book : books) {
-                System.out.print(book.title);
+                System.out.print("* "+book.title);
                 System.out.println(" - " + book.author);
             }
             System.out.println();
@@ -226,7 +227,8 @@ public class Management {
     }
 
     static void addMember() {
-        System.out.print("Member id: ");
+        System.out.println("\nMember Registration\n");
+        System.out.print("Enter your id: ");
 
         Scanner sc2 = new Scanner(System.in);
         int id = sc2.nextInt();
@@ -238,7 +240,7 @@ public class Management {
             }
         }
 
-        System.out.print("Member name: ");
+        System.out.print("Enter your name: ");
         Scanner sc1 = new Scanner(System.in);
         String name = sc1.nextLine();
 
