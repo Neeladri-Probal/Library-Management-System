@@ -80,8 +80,8 @@ public class Management {
         books.add(d);
         isAvailableBook.add(d.bookId);
     }
-    //some default member
-    static{
+    // some default member
+    static {
         Member b = new Member("Alice", 201);
         member.add(b);
         isAvailableMember.add(b.id);
@@ -134,7 +134,7 @@ public class Management {
         else {
             for (Book book : books) {
                 System.out.print(book.title);
-                System.out.println(" - "+book.author);
+                System.out.println(" - " + book.author);
             }
             System.out.println();
         }
@@ -283,7 +283,8 @@ public class Management {
             System.out.println("\nSuccessfully borrowed book.");
             LocalDate today = LocalDate.now();
             LocalDate returndate = today.plusDays(7);
-            System.out.println("Return Date: "+returndate+"\n");
+            System.out.println("Borrow Date: " + today);
+            System.out.println("Return Date: " + returndate + "\n");
         } else if (!membership) {
             System.out.println("\nPlease take membership first.\n");
         } else if (!canBorrow) {
@@ -341,6 +342,32 @@ public class Management {
         }
         if (!returned) {
             System.out.println("\nYou have no book borrowed.\n");
+        }
+    }
+
+    static void deleteBook(int bookid) {
+
+        boolean found = false;
+
+        for (Book book : books) {
+            if (book.bookId == bookid) {
+                found = true;
+                System.out.println("\nAre you sure to remove the book "+book.title+"?");
+                System.out.println("1.Yes\n2.No\n");
+                System.out.print("Enter your choice : ");
+                Scanner scann = new Scanner(System.in);
+                int ch = scann.nextInt();
+                if (ch == 1) {
+                    books.remove(book);
+                    System.out.println("\nSuccessfully removed the book.\n");
+                    break;
+                } else if (ch == 2) {
+                    System.out.println("\nCanceled Deleting Book.\n");
+                }
+            }
+        }
+        if (!found) {
+            System.out.println("The book is not available.");
         }
     }
 }
