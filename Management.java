@@ -1,6 +1,8 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Vector;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.time.LocalDate;
 
 public class Management {
@@ -104,28 +106,39 @@ public class Management {
     }
 
     static void addBook() {
-        System.out.print("Book ID: ");
-        Scanner sc1 = new Scanner(System.in);
-        int bookId = sc1.nextInt();
-        for (int i : isAvailableBook) {
-            if (i == bookId) {
-                System.out.println("\nThe book is already added.\n");
-                return;
+        try {
+            Connection con = DBConnection.getConnection();
+            String sql = "INSERT INTO books(bookid, title, author, genre) VALUES(?, ?, ?, ?)";
+            PreparedStatement ps = con.prepareStatement(sql);
+
+            Scanner sc = new Scanner(System.in);
+            System.out.print("Enter BookId: ");
+            int bookid = sc.nextInt();
+            sc.nextLine(); // buffer clear
+
+            System.out.print("Enter Title: ");
+            String title = sc.nextLine();
+
+            System.out.print("Enter Author: ");
+            String author = sc.nextLine();
+
+            System.out.print("Enter Genre: ");
+            String genre = sc.nextLine();
+
+            ps.setInt(1, bookid);
+            ps.setString(2, title);
+            ps.setString(3, author);
+            ps.setString(4, genre);
+
+            int rows = ps.executeUpdate();
+            if (rows > 0) {
+                System.out.println("Book added successfully!");
             }
+
+            con.close();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        System.out.print("Book title: ");
-        sc1 = new Scanner(System.in);
-        String title = sc1.nextLine();
-        System.out.print("Author: ");
-        sc1 = new Scanner(System.in);
-        String author = sc1.nextLine();
-        System.out.print("Genre: ");
-        sc1 = new Scanner(System.in);
-        String genre = sc1.nextLine();
-        Book b = new Book(bookId, title, author, genre);
-        books.add(b);
-        isAvailableBook.add(b.bookId);
-        System.out.println("Book added successfully.\n");
     }
 
     static boolean showBooks() {
@@ -134,7 +147,7 @@ public class Management {
         else {
             System.out.println("\nAvailabe Books\n");
             for (Book book : books) {
-                System.out.print("* "+book.title);
+                System.out.print("* " + book.title);
                 System.out.println(" - " + book.author);
             }
             System.out.println();
@@ -354,7 +367,7 @@ public class Management {
         for (Book book : books) {
             if (book.bookId == bookid) {
                 found = true;
-                System.out.println("\nAre you sure to remove the book "+book.title+"?");
+                System.out.println("\nAre you sure to remove the book " + book.title + "?");
                 System.out.println("1.Yes\n2.No\n");
                 System.out.print("Enter your choice : ");
                 Scanner scann = new Scanner(System.in);
@@ -373,6 +386,7 @@ public class Management {
             System.out.println("\nThe book is not available.\n");
         }
     }
+
     static void deleteMem(int memid) {
 
         boolean found = false;
@@ -380,7 +394,7 @@ public class Management {
         for (Member m : member) {
             if (m.id == memid) {
                 found = true;
-                System.out.println("\nAre you sure to remove the member "+m.name+"?");
+                System.out.println("\nAre you sure to remove the member " + m.name + "?");
                 System.out.println("1.Yes\n2.No\n");
                 System.out.print("Enter your choice : ");
                 Scanner scann = new Scanner(System.in);

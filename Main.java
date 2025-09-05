@@ -4,7 +4,7 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         System.out.println(
-                "===================================\n    Welcome to Leading Library\n===================================");
+                "===================================\n    Welcome to Library\n===================================");
         System.out.println("\n1. Log in as user");
         System.out.println("2. Log in as librarian");
         System.out.println("3. Exit\n");
@@ -77,8 +77,7 @@ public class Main {
                     Scanner scann = new Scanner(System.in);
                     int memid = scann.nextInt();
                     Management.deleteMem(memid);
-                }
-                else if(choic == 6){
+                } else if (choic == 6) {
                     System.out.println("\nThanks for visiting...");
                     System.exit(0);
                 }
@@ -88,6 +87,7 @@ public class Main {
             System.exit(0);
         } else if (chs == 2) {
             Scanner sc = new Scanner(System.in);
+            System.out.println("\nLibrarian Home\n");
             System.out.println("\n1.Add book");
             System.out.println("2.View books");
             System.out.println("3.Search book");
@@ -100,7 +100,7 @@ public class Main {
             System.out.println("10.Delete Member");
             System.out.println("11.Exit\n");
             while (true) {
-
+                System.out.println("Librarian Home\n");
                 System.out.print("Choose option: ");
 
                 int choice = sc.nextInt();
