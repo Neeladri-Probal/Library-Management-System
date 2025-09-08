@@ -2,6 +2,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Vector;
 import java.time.LocalDate;
+import java.util.Iterator;
 
 public class Management {
     static ArrayList<Book> books = new ArrayList<>();
@@ -294,30 +295,44 @@ public class Management {
         }
     }
 
-    static void returnBook(int mid) {
-        boolean membership = false;
-        for (int available : isAvailableMember) {
-            if (available == mid) {
-                membership = true;
-                break;
-            }
-        }
-        if (!membership) {
-            System.out.println("\nTake membership first.\n");
-            return;
-        }
-        boolean returned = false;
-        for (Borrow id : whoBorrows) {
-            if (mid == id.stdID) {
-                isAvailableBook.add(id.bookID);
-                System.out.println("\nReturned book successfully.");
-                returned = true;
-            }
-        }
-        if (!returned) {
-            System.out.println("\nYou have no book borrowed.\n");
+static void returnBook(int mid) {
+    boolean membership = false;
+    for (int available : isAvailableMember) {
+        if (available == mid) {
+            membership = true;
+            break;
         }
     }
+    if (!membership) {
+        System.out.println("\nTake membership first.\n");
+        return;
+    }
+
+    boolean returned = false;
+    Iterator<Borrow> it = whoBorrows.iterator(); // Use iterator to remove safely
+    while (it.hasNext()) {
+        Borrow id = it.next();
+        if (mid == id.stdID) {
+            isAvailableBook.add(id.bookID);
+
+            // --- Fine calculation ---
+            int fine = id.calculateFine(); // Borrow.java must have calculateFine() method
+            if (fine > 0) {
+                System.out.println("\nBook returned late! Fine: " + fine + " BDT");
+            } else {
+                System.out.println("\nBook returned on time. No fine.");
+            }
+            // --------------------------
+
+            it.remove(); // remove borrow record
+            returned = true;
+        }
+    }
+
+    if (!returned) {
+        System.out.println("\nYou have no book borrowed.\n");
+    }
+}
 
     static void viewBorrowedBook(int mid) {
         boolean membership = false;
